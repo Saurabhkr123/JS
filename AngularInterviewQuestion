@@ -1,0 +1,41 @@
+// import { of, filter, map } from 'rxjs';
+// const squareOdd = of(1, 2, 3, 4, 5)
+//   .pipe(
+//     filter(n => n % 2 === 1),
+//     map(n => n * n)
+//   );
+// squareOdd.subscribe(x => console.log(x));
+
+
+// In Angular, a wildcard route is a catch-all route that is used to handle undefined or unmatched paths in your application. 
+// It is particularly useful for displaying a "Not Found" page (typically a 404 page) when a user navigates to a 
+// route that doesn't exist in your application.
+// you can define a wildcard route with a path consisting of double asterisks (**)
+
+// life cycle method
+// ngOnChanges:
+// Called when any of the component's input properties change. It runs before ngOnInit. Useful for reacting to changes in input values.
+
+// ngOnInit:
+// Called once after the component is initialized. It's a good place to put initialization logic, like fetching data or setting up 
+// initial values.
+
+// ngDoCheck:
+// Called during every change detection cycle. It allows you to check for custom changes that Angular doesn't automatically detect.
+
+// ngAfterContentInit:
+// Called once after Angular projects external content (like content projected using <ng-content>) into the component's view.
+
+// ngAfterContentChecked:
+// Called after every check of the projected content.
+
+// ngAfterViewInit:
+// Called once after the component's view and its child views have been initialized.
+
+// ngAfterViewChecked:
+// Called after every check of the component's view and its child views.
+
+// ngOnDestroy:
+// Called just before Angular destroys the component. Useful for cleanup tasks like unsubscribing from observables or clearing timers.
+
+

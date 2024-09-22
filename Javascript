@@ -1,0 +1,182 @@
+Async and await
+
+asynchronous programming is crucial for tasks that take time to complete, such as fetching data from a server or reading a file.
+introduction of async and await in ECMAScript 2017 (ES8),
+async: The async keyword is used to define an asynchronous function. When a function is declared with async, 
+it automatically returns a promise. Inside an async function, you can use the await keyword to pause the execution of the 
+function until a promise is resolved.
+await: The await keyword is used to wait for a promise to resolve. It can only be used inside an async function.
+ When you await a promise, the execution of the async function is paused until the promise is settled (either resolved or rejected).
+  Once the promise is settled, await returns the resolved value or throws the rejected value (if any).
+  // Example function to simulate fetching data from a server
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = 'This is some data from the server';
+      resolve(data);
+    }, 2000); // Simulating a delay of 2 seconds
+  });
+}
+
+// Asynchronous function using async/await
+async function fetchDataAsync() {
+  try {
+    console.log('Fetching data...');
+    const data = await fetchData(); // Wait for the fetchData promise to resolve
+    console.log('Data received:', data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+// Call the asynchronous function
+fetchDataAsync();
+
+
+ promise
+ Promises are a fundamental part of JavaScript for managing asynchronous operations. A promise represents the eventual completion 
+ (or failure) of an asynchronous operation and 
+ its resulting value.
+ Creating a Promise: To create a promise, you use the Promise constructor, passing a function with two parameters: 
+ resolve and reject. Inside this function, you perform your asynchronous operation, and when it's 
+ completed successfully, you call resolve with the result. If an error occurs, you call reject with an error object.
+Consuming a Promise: Once you have a promise, you can use its then() method to handle the resolved value and its catch() method 
+to handle any errors. You can chain multiple then() calls to perform sequential asynchronous operations.
+
+callback function 
+A callback function is a function that is passed as an argument to another function, with the intention that
+ it will be invoked (or "called back") at a later time, typically after some asynchronous operation completes or some 
+condition is met.
+
+Event loop
+The event loop is a crucial concept in JavaScript's concurrency model, responsible for managing asynchronous operations 
+and handling events. It's what allows JavaScript to perform non-blocking I/O operations, such as fetching data from a server 
+or responding to user interactions, 
+without freezing the execution of other code.
+Call Stack: JavaScript code is executed in a single-threaded manner through the call stack. When a function is called, it's added to the 
+top of the call stack, and when it returns,
+ it's removed from the stack.
+Event Queue: JavaScript also has an event queue (also known as task queue or callback queue), where asynchronous events and
+ callbacks are placed after they're executed. These events can include user input, timer events, network requests, and more.
+Event Loop: The event loop constantly checks two things: the call stack and the event queue. If the call stack is empty and 
+there are events waiting in the queue, the event loop will move an event from the queue to the call stack, effectively executing it. 
+This process continues indefinitely, hence the term "loop."
+
+Local Storage:
+
+Local Storage is a web storage mechanism in web browsers that allows you to store key-value pairs locally within 
+the user's browser.
+The data stored in local storage persists even after the browser is closed and reopened, providing a way to
+ store persistent data on the client side.
+Local storage has a larger storage capacity compared to cookies (usually up to 5MB per domain).
+It's accessible across different tabs and windows of the same browser and even across browser sessions.
+Data stored in local storage remains until explicitly deleted by the web application or cleared by the user through
+ browser settings.
+Local storage is often used for storing user preferences, settings, cached data, and other application-specific data that 
+needs to persist between sessions.
+
+Session Storage:
+
+Session Storage is similar to local storage but scoped to the current browsing session.
+Data stored in session storage is available only for the duration of the page session. Once the browser window or tab is closed, 
+the data is cleared.
+Like local storage, session storage also allows you to store key-value pairs locally within the user's browser, providing a way to 
+store temporary data on the client side.
+Session storage is useful for storing temporary state, session-specific data, or data that is only needed for the current session.
+Session storage has the same storage capacity as local storage (usually up to 5MB per domain), but its data is cleared when the 
+session ends, making it suitable for storing transient information.
+
+Shallow Copy VS Deep Copy
+
+Shallow Copy:
+A shallow copy creates a new object or data structure, but it only copies the references to the original objects within the new 
+object. In other words, it creates a new container, but the elements themselves are still shared between the original and copied objects.
+If the copied object contains nested objects or arrays, only the top-level structure is duplicated, while the nested elements are
+ still referenced. Therefore, changes made to nested elements in the copied object will affect the original object and vice versa.
+Shallow copies are generally faster and more memory-efficient than deep copies because they don't recursively copy every element 
+within the data structure. Spread Operator: Object.assign():
+Deep Copy:
+A deep copy, on the other hand, creates a completely new object or data structure and recursively copies all elements and nested 
+elements within it. This means that every element in the original object is duplicated in the new object, including nested objects or 
+arrays.
+Deep copies ensure that changes made to the copied object do not affect the original object and vice versa, as they are entirely 
+separate instances.
+Deep copies are more memory-intensive and can be slower, especially for large or deeply nested data structures, because they involve
+ recursively copying every element within the structure.Lodash's _.cloneDeep:, Using JSON.parse() and JSON.stringify()
+
+
+Throttling and debouncing are two techniques used in JavaScript to control the frequency at which a function is executed. These 
+techniques are especially useful for optimizing performance in scenarios where a function is called repeatedly due to events like 
+scrolling, resizing, or typing.
+Throttling ensures that a function is called at most once in a specified period. It prevents a function from being called too frequently.
+When an event triggers, the throttled function executes immediately.
+The function will only be executed again after a specified time interval has passed
+Use Case:
+Throttling is useful for events that can occur many times in a short period but need to be handled less frequently. Examples include:
+
+Window resizing
+Scrolling
+Mouse movements
+
+Debouncing ensures that a function is called only after a certain period of inactivity. It delays the execution of the function until
+ after the specified wait time has passed since the last time it was invoked.
+When an event triggers, the debounced function waits for a specified delay.
+If the event is triggered again within the delay period, the timer resets.
+The function is only executed after the delay period has passed without any new event triggers.
+Text input (e.g., for search suggestions)
+Window resizing
+Button clicks
+
+Throttling: Ensures a function is called at most once every specified period. It guarantees regular intervals between function calls.
+Debouncing: Ensures a function is called after a certain period of inactivity. It only triggers the function if there is a pause in
+ event firing.
+
+Factory Function
+A factory function is a regular function that returns a new object. It does not use the new keyword or the this keyword.
+
+Constructor Function
+A constructor function is used with the new keyword to create an instance of an object. Inside a constructor function, this refers
+ to the new object being created.
+
+ accessing dom element using JavaScript
+getElementById
+getElementByClassname
+getElementByTagname
+queryselector
+queryselectorall
+
+
+css selector
+Element Selector   p{}
+ID  selector   #myelement {}
+class   selector  .classname{}
+Descendant selector  div span{}
+child   selector    div > p {}
+Adjacent  selector  div+p
+attribute  selector a+[target]
+
+
+class in JavaScript
+type of function is function(behind the scene it is object)
+type of array is object
+type of class is function
+create promise and create button that will resolved when button is pressed
+How promise is resolved
+create a promise without using newPromise
+how can we make module
+
+factory function vs constructor function
+pure function
+protype inheritance
+slice,splice
+higherorder function
+lambda function
+
+
+querySelector returns a single element (the first one found).
+querySelectorAll returns a NodeList of all matching elements.
+querySelector may be faster if you only need the first matching element since it stops searching after finding the first match.
+querySelectorAll needs to traverse the entire DOM subtree to find all matches, which might be less efficient for a large 
+number of elements.
+querySelector returns a single Element or null.
+querySelectorAll returns a NodeList which is a collection of Element objects
